@@ -4,9 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-    <dubbo:application name="Chinatown"/>
+    <dubbo:application name="caiPiao_web"/>
     <dubbo:registry address="${dubbo.zookeeper.registry}" check="false" transporter="curator"/>
-    <dubbo:consumer check="false" filter="catTransaction,apiResponseCheckFilter" timeout="5000"/>
+    <dubbo:consumer check="false" timeout="5000"/>
 
     <!--<dubbo:reference id="orderServiceFacade" interface="com.gaosi.api.revolver.facade.OrderServiceFacade"/>-->
 
