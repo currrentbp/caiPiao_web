@@ -8,7 +8,7 @@
     <dubbo:registry address="${dubbo.zookeeper.registry}" check="false" transporter="curator"/>
     <dubbo:consumer check="false" timeout="5000"/>
 
-    <!--<dubbo:reference id="orderServiceFacade" interface="com.gaosi.api.revolver.facade.OrderServiceFacade"/>-->
+    <dubbo:reference id="forecastDaletouServiceFacade" interface="com.currentbp.api.daletou.facade.ForecastDaletouServiceFacade"/>
 
 
 </beans>
