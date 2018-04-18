@@ -9,6 +9,7 @@
     <dubbo:consumer check="false" timeout="5000"/>
 
     <dubbo:reference id="forecastDaletouServiceFacade" interface="com.currentbp.api.daletou.facade.ForecastDaletouServiceFacade" url="dubbo://192.168.0.67:20891/"/>
+    <dubbo:reference id="daletouServiceFacade" interface="com.currentbp.api.daletou.facade.DaletouServiceFacade" url="dubbo://192.168.0.67:20891/"/>
 
 
 </beans>
