@@ -8,7 +8,7 @@
     <dubbo:registry address="${dubbo.zookeeper.registry}" check="false" transporter="curator"/>
     <dubbo:consumer check="false" timeout="5000"/>
 
-    <dubbo:reference id="forecastDaletouServiceFacade" interface="com.currentbp.api.daletou.facade.ForecastDaletouServiceFacade"/>
+    <dubbo:reference id="forecastDaletouServiceFacade" interface="com.currentbp.api.daletou.facade.ForecastDaletouServiceFacade" url="dubbo://192.168.0.67:20891/"/>
 
 
 </beans>

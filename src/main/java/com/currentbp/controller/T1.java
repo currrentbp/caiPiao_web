@@ -28,6 +28,7 @@ public class T1 {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResultData sss(){
         logger.info("=====>t1");
+        forecastDaletouServiceFacade.forecastDaletou(1,1);
         return ResultData.successed("sssssssss");
     }
 
