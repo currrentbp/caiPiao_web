@@ -6,9 +6,11 @@ import com.currentbp.common.entity.ResultData;
 import com.currentbp.daletou.bo.entity.DaletouBo;
 import com.currentbp.daletou.condition.DaletouCondition;
 import com.currentbp.daletou.entity.Daletou;
+import com.currentbp.util.all.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,11 +60,27 @@ public class DaletouController {
 
     /**
      * 预测大乐透
+     * todo not work
      *
      * @return 结果
      */
     @RequestMapping(value = "/forecast", method = RequestMethod.GET)
     public ResultData forecast() {
         return ResultData.successed(daletouServiceFacade.queryDaletouAll());
+    }
+
+    /**
+     * 判断中奖个数
+     *
+     * @return 结果
+     */
+    @RequestMapping(value = "/win", method = RequestMethod.POST)
+    public ResultData win(@RequestBody List<Daletou> daletous) {
+        checkParams4Win(daletous);
+        return ResultData.successed(daletouServiceFacade.isWin(daletous));
+    }
+
+    private void checkParams4Win(List<Daletou> daletous) {
+        daletous.forEach((Daletou daletou) -> Assert.notNull(daletou.getId(), "大乐透的期号不能为空"));
     }
 }
