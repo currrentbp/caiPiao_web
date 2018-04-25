@@ -60,13 +60,12 @@ public class DaletouController {
 
     /**
      * 预测大乐透
-     * todo not work
      *
      * @return 结果
      */
     @RequestMapping(value = "/forecast", method = RequestMethod.GET)
-    public ResultData forecast() {
-        return ResultData.successed(daletouServiceFacade.queryDaletouAll());
+    public ResultData forecast(int num,int daletouId) {
+        return ResultData.successed(daletouServiceFacade.forecast(num,daletouId));
     }
 
     /**
