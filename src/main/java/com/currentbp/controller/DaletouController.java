@@ -79,6 +79,18 @@ public class DaletouController {
         return ResultData.successed(daletouServiceFacade.isWin(daletous));
     }
 
+
+    /**
+     * 预测大乐透
+     *
+     * @return 结果
+     */
+    @RequestMapping(value = "/forecastAndSave", method = RequestMethod.GET)
+    public ResultData forecastAndSave(int daletouId) {
+        daletouServiceFacade.forecastAndSave(daletouId);
+        return ResultData.successed();
+    }
+
     private void checkParams4Win(List<Daletou> daletous) {
         daletous.forEach((Daletou daletou) -> Assert.notNull(daletou.getId(), "大乐透的期号不能为空"));
     }
