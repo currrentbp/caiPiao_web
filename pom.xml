@@ -20,6 +20,7 @@
         <caiPiao.api.version>1.0-SNAPSHOT</caiPiao.api.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>
