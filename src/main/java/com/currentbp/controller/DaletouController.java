@@ -1,19 +1,15 @@
 package com.currentbp.controller;
 
 import com.currentbp.api.daletou.facade.DaletouServiceFacade;
-import com.currentbp.api.daletou.facade.ForecastDaletouServiceFacade;
 import com.currentbp.common.entity.ResultData;
 import com.currentbp.daletou.bo.entity.DaletouBo;
-import com.currentbp.daletou.condition.DaletouCondition;
+import com.currentbp.daletou.condition.DaletouPageCondition;
 import com.currentbp.daletou.entity.Daletou;
 import com.currentbp.util.all.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,26 +42,13 @@ public class DaletouController {
      * @return 大乐透列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResultData list() {
-        DaletouCondition daletouCondition = new DaletouCondition();
-        daletouCondition.setPageNum(1);
-        daletouCondition.setPageSize(10);
-        List<Daletou> daletous = daletouServiceFacade.queryDaletouByCondition(daletouCondition);
+    public ResultData list(@RequestParam DaletouPageCondition daletouPageCondition) {
+        List<Daletou> daletous = daletouServiceFacade.queryDaletouByCondition(daletouPageCondition);
         List<DaletouBo> daletouBos = new ArrayList<>();
         for (Daletou daletou : daletous) {
             daletouBos.add(new DaletouBo(daletou));
         }
         return ResultData.successed(daletouBos);
-    }
-
-    /**
-     * 预测大乐透
-     *
-     * @return 结果
-     */
-    @RequestMapping(value = "/forecast", method = RequestMethod.GET)
-    public ResultData forecast(int num,int daletouId) {
-        return ResultData.successed(daletouServiceFacade.forecast(num,daletouId));
     }
 
     /**
@@ -77,18 +60,6 @@ public class DaletouController {
     public ResultData win(@RequestBody List<Daletou> daletous) {
         checkParams4Win(daletous);
         return ResultData.successed(daletouServiceFacade.isWin(daletous));
-    }
-
-
-    /**
-     * 预测大乐透
-     *
-     * @return 结果
-     */
-    @RequestMapping(value = "/forecastAndSave", method = RequestMethod.GET)
-    public ResultData forecastAndSave(int daletouId) {
-        daletouServiceFacade.forecastAndSave(daletouId);
-        return ResultData.successed();
     }
 
     private void checkParams4Win(List<Daletou> daletous) {
