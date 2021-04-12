@@ -37,9 +37,9 @@ public class DaletouForcecastController {
      * 预测大乐透：第二版
      */
     @RequestMapping(value = "/forecastV2", method = RequestMethod.GET)
-    public ResultData forecastV2(int num, List<Daletou> daletous) {
+    public ResultData forecastV2(int num, List<Daletou> daletous,int daletouId) {
 
-        return ResultData.successed(daletouServiceFacade.forecastV2(num,daletous));
+        return ResultData.successed(daletouServiceFacade.forecastV2(num,daletous,daletouId));
     }
 
 }
